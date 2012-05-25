@@ -27,4 +27,4 @@ requires:
 resources:
   homepage: https://github.com/sng2c/IPC-AnyEvent-Gearman
   repository: git://github.com/sng2c/IPC-AnyEvent-Gearman.git
-version: 0.001
+version: 0.002

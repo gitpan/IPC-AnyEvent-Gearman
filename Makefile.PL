@@ -33,7 +33,7 @@ my %WriteMakefileArgs = (
     "Log::Log4perl" => 0,
     "namespace::autoclean" => 0
   },
-  "VERSION" => "0.001",
+  "VERSION" => "0.002",
   "test" => {
     "TESTS" => "t/*.t"
   }
