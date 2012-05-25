@@ -18,6 +18,7 @@ meta-spec:
 name: IPC-AnyEvent-Gearman
 requires:
   Any::Moose: 0
+  AnyEvent: 0
   AnyEvent::Gearman: 0
   Data::Dumper: 0
   Devel::GlobalDestruction: 0
@@ -27,4 +28,4 @@ requires:
 resources:
   homepage: https://github.com/sng2c/IPC-AnyEvent-Gearman
   repository: git://github.com/sng2c/IPC-AnyEvent-Gearman.git
-version: 0.002
+version: 0.1

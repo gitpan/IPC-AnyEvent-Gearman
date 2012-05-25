@@ -26,6 +26,7 @@ my %WriteMakefileArgs = (
   "NAME" => "IPC::AnyEvent::Gearman",
   "PREREQ_PM" => {
     "Any::Moose" => 0,
+    "AnyEvent" => 0,
     "AnyEvent::Gearman" => 0,
     "Data::Dumper" => 0,
     "Devel::GlobalDestruction" => 0,
@@ -33,7 +34,7 @@ my %WriteMakefileArgs = (
     "Log::Log4perl" => 0,
     "namespace::autoclean" => 0
   },
-  "VERSION" => "0.002",
+  "VERSION" => "0.1",
   "test" => {
     "TESTS" => "t/*.t"
   }

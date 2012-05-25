@@ -10,8 +10,7 @@ use AnyEvent::Gearman;
 use Devel::GlobalDestruction;
 
 
-our $VERSION = '0.002'; # VERSION
-
+our $VERSION = '0.1'; # VERSION
 
 
 has 'pid' => (is => 'rw', isa => 'Str', default=>sub{return $$;});
@@ -127,7 +126,7 @@ IPC::AnyEvent::Gearman - IPC through gearmand.
 
 =head1 VERSION
 
-version 0.002
+version 0.1
 
 =head1 SYNOPSIS
 
@@ -151,11 +150,9 @@ version 0.002
     $send->pid(1102);
     my $result = $send->send("TEST DATA");
 
-=head1 FUNCTIONS
+=head1 ATTRIBUTES
 
-=head3 new
-
-=head4 pid
+=head2 pid
 
 'pid' is unique id for identifying each process.
 This can be any value not just PID.
@@ -165,36 +162,38 @@ It is filled own PID by default.
 
 ArrayRef of hosts.
 
-=head4 prefix
+=head2 prefix
 
 When register function, it uses prefix+pid as function name.
 It is filled 'IPC::AnyEvent::Gearman#' by default. 
 
-=head4 on_receive
+=head2 on_receive
 
 on_receive Hander.
 First argument is DATA which is sent.
 This can be invoked after listen().
 
-=head4 on_send
+=head2 on_send
 
 on_send handler.
 First argument is a channel string.
 
-=head4 on_sendfail
+=head2 on_sendfail
 
 on_sendfail handler.
 First argument is a channel string.
 
-=head3 listen
+=head1 METHODS
+
+=head2 listen
 
 To receive message, you MUST call listen().
 
-=head3 channel
+=head2 channel
 
 get prefix+pid
 
-=head3 send
+=head2 send
 
 To send data to process listening prefix+pid, use this.
 You must set 'pid' or 'prefix' attribute on new() method.
