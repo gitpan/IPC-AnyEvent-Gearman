@@ -1,0 +1,15 @@
+LICENSE
+MANIFEST
+META.yml
+Makefile.PL
+README
+README.mkd
+dist.ini
+lib/IPC/AnyEvent/Gearman.pm
+samples/budda.pl
+samples/budda2.pl
+samples/budda3.pl
+t/00-base.t
+t/01-ipc.t
+t/02-renew.t
+t/03-fork.t
