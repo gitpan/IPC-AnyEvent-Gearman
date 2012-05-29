@@ -10,7 +10,7 @@ use AnyEvent::Gearman;
 use Devel::GlobalDestruction;
 
 
-our $VERSION = '0.1'; # VERSION
+our $VERSION = '0.2'; # VERSION
 
 
 has 'pid' => (is => 'rw', isa => 'Str', default=>sub{return $$;});
@@ -104,15 +104,7 @@ sub _renew_connection{
     );
     
 }
-sub BUILD{
-    my $self = shift;
-    DEBUG $self->channel." BUILD";
-}
-sub DEMOLISH{   
-    return if in_global_destruction();
-    my $self = shift;
-    DEBUG $self->channel." DEMOLISH";
-}
+
 __PACKAGE__->meta->make_immutable(inline_constructor => 0);
 
 1;
@@ -126,7 +118,7 @@ IPC::AnyEvent::Gearman - IPC through gearmand.
 
 =head1 VERSION
 
-version 0.1
+version 0.2
 
 =head1 SYNOPSIS
 
@@ -158,7 +150,7 @@ version 0.1
 This can be any value not just PID.
 It is filled own PID by default.
 
-=head4 servers
+=head2 servers
 
 ArrayRef of hosts.
 
