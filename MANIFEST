@@ -13,3 +13,4 @@ t/00-base.t
 t/01-ipc.t
 t/02-renew.t
 t/03-fork.t
+t/04-serverdie.t

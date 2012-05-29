@@ -31,10 +31,11 @@ my %WriteMakefileArgs = (
     "Data::Dumper" => 0,
     "Devel::GlobalDestruction" => 0,
     "Gearman::Server" => 0,
+    "Gearman::Worker" => 0,
     "Log::Log4perl" => 0,
     "namespace::autoclean" => 0
   },
-  "VERSION" => "0.2",
+  "VERSION" => "0.3",
   "test" => {
     "TESTS" => "t/*.t"
   }
