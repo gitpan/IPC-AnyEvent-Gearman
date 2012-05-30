@@ -12,7 +12,6 @@ my %WriteMakefileArgs = (
   "ABSTRACT" => "IPC through gearmand.",
   "AUTHOR" => "KHS, HyeonSeung Kim <sng2nara\@hanmail.net>",
   "BUILD_REQUIRES" => {
-    "AnyEvent" => 0,
     "EV" => 0,
     "IO::Socket::INET" => 0,
     "Test::More" => 0
@@ -28,14 +27,16 @@ my %WriteMakefileArgs = (
     "Any::Moose" => 0,
     "AnyEvent" => 0,
     "AnyEvent::Gearman" => 0,
+    "AnyEvent::Gearman::Worker::Connection" => 0,
+    "AnyEvent::Handle" => 0,
+    "AnyEvent::Socket" => 0,
     "Data::Dumper" => 0,
-    "Devel::GlobalDestruction" => 0,
     "Gearman::Server" => 0,
-    "Gearman::Worker" => 0,
     "Log::Log4perl" => 0,
+    "Scalar::Util" => 0,
     "namespace::autoclean" => 0
   },
-  "VERSION" => "0.3",
+  "VERSION" => "0.4",
   "test" => {
     "TESTS" => "t/*.t"
   }

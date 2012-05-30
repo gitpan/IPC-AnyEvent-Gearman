@@ -1,6 +1,6 @@
 use Test::More tests=>1;
 use Log::Log4perl qw(:easy);
-Log::Log4perl->easy_init($DEBUG);
+Log::Log4perl->easy_init($ERROR);
 
 use AnyEvent;
 use EV;
@@ -8,12 +8,10 @@ use IPC::AnyEvent::Gearman;
 my $gid = fork();
 if( !$gid )
 {
-    sleep(2);
     DEBUG "######## start_gearmand ########";
     exec('gearmand -p 9999');
     die('cannot gearmand');
 }
-#sleep(1);
 my $cv = AE::cv;
 my @childs;
 
@@ -33,7 +31,19 @@ if( $@){
     kill 9,$gid;
     exit;
 }
-my $t = AE::timer 5,0,sub{
+my $tt = AE::timer 3,0,sub{
+    kill 9,$gid;
+    sleep(3);
+    $gid = fork();
+    if( !$gid )
+    {
+        DEBUG "######## start_gearmand ########";
+        exec('gearmand -p 9999');
+        die('cannot gearmand');
+    }
+
+};
+my $t = AE::timer 8,0,sub{
         DEBUG ">>>>> SEND to child \n";
         my $ch = IPC::AnyEvent::Gearman->new(servers=>['localhost:9999']);
         $ch->on_send(sub{
@@ -45,11 +55,11 @@ my $t = AE::timer 5,0,sub{
         $ch->send('kill');
 };
 
-my $t2 = AE::timer 8,0,sub{$cv->send;};
+my $t2 = AE::timer 13,0,sub{$cv->send;};
 
 $cv->recv;
 undef $t;
 undef $t2;
-DEBUG "DEAD $$\n";
 kill 9,$gid;
+DEBUG "DEAD $$\n";
 done_testing();

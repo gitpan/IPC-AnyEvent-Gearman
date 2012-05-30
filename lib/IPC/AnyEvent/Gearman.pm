@@ -1,17 +1,17 @@
 package IPC::AnyEvent::Gearman;
 # ABSTRACT: IPC through gearmand.
 use Log::Log4perl qw(:easy);
-Log::Log4perl->easy_init($DEBUG);
+Log::Log4perl->easy_init($ERROR);
 use Any::Moose;
 use namespace::autoclean;
 
 use Data::Dumper;
+
 use AnyEvent::Gearman;
-use Gearman::Worker;
-use Devel::GlobalDestruction;
+use AnyEvent::Gearman::Worker::RetryConnection;
 
 
-our $VERSION = '0.3'; # VERSION
+our $VERSION = '0.4'; # VERSION
 
 
 has 'pid' => (is => 'rw', isa => 'Str', default=>sub{return $$;});
@@ -38,9 +38,8 @@ default=>sub{
 },
 );
 
-has 'worker' => (is=>'rw', isa=>'Object');
-
-has 'timer' => (is=>'rw', isa=>'Object');
+has 'worker' => (is=>'rw', isa=>'Object',
+                    );
 
 after 'pid' => sub{
     my $self = shift;
@@ -95,21 +94,17 @@ sub send{
 sub _renew_connection{
     my $self = shift;
     DEBUG "new Connection";
-    my $worker = Gearman::Worker->new();
-    $worker->job_servers(@{$self->servers()});
-
-    $self->worker($worker);
+    my $worker = gearman_worker @{$self->servers()};
+    $worker = AnyEvent::Gearman::Worker::RetryConnection::patch_worker($worker);
+    $self->worker( $worker );
     $self->worker->register_function(
         $self->prefix().$self->pid() => sub{
             my $job = shift;
-            my $res = $self->on_receive()->($job->arg);
+            my $res = $self->on_receive()->($job->workload);
             $res = '' unless defined($res);
-            return $res;
+            $job->complete($res);
         }
     );
-    $self->timer( AE::timer 0,0.1,sub{
-        $self->worker()->work(stop_if=>sub{1});
-    });
 }
 
 __PACKAGE__->meta->make_immutable(inline_constructor => 0);
@@ -125,7 +120,7 @@ IPC::AnyEvent::Gearman - IPC through gearmand.
 
 =head1 VERSION
 
-version 0.3
+version 0.4
 
 =head1 SYNOPSIS
 
