@@ -1,9 +1,12 @@
 Revision History for IPC-AnyEvent-Gearman
 =========================================
 
-v0.4 2012-05-30
+v0.5 2012-05-30
 ---------------
 
+2012-05-30 21:41:26 +0900  v0.5 - change retry_count to retrying - update some codes,tests
+2012-05-30 16:49:19 +0900  add leak test sample
+2012-05-30 16:27:05 +0900  add moose tip
 2012-05-30 16:18:05 +0900  set log level tp ERROR
 
 v0.4 2012-05-30

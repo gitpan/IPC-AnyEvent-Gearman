@@ -1,17 +1,15 @@
 package IPC::AnyEvent::Gearman;
 # ABSTRACT: IPC through gearmand.
+use namespace::autoclean;
 use Log::Log4perl qw(:easy);
 Log::Log4perl->easy_init($ERROR);
 use Any::Moose;
-use namespace::autoclean;
-
 use Data::Dumper;
-
 use AnyEvent::Gearman;
 use AnyEvent::Gearman::Worker::RetryConnection;
 
 
-our $VERSION = '0.4'; # VERSION
+our $VERSION = '0.5'; # VERSION
 
 
 has 'pid' => (is => 'rw', isa => 'Str', default=>sub{return $$;});
@@ -107,7 +105,7 @@ sub _renew_connection{
     );
 }
 
-__PACKAGE__->meta->make_immutable(inline_constructor => 0);
+__PACKAGE__->meta->make_immutable;
 
 1;
 
@@ -120,7 +118,7 @@ IPC::AnyEvent::Gearman - IPC through gearmand.
 
 =head1 VERSION
 
-version 0.4
+version 0.5
 
 =head1 SYNOPSIS
 
