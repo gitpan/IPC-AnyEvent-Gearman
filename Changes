@@ -1,6 +1,11 @@
 Revision History for IPC-AnyEvent-Gearman
 =========================================
 
+v0.6 2012-06-01
+---------------
+
+2012-06-01 10:09:45 +0900  v0.6 rename callbacks to on_recv,on_fail rename servers attr to job_servers send() changed. It accepts 'target_pid' as first arg.
+
 v0.5 2012-05-30
 ---------------
 
