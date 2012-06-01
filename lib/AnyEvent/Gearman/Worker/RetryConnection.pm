@@ -2,7 +2,7 @@ package AnyEvent::Gearman::Worker::RetryConnection;
 
 # ABSTRACT: patching AnyEvent::Gearman::Worker for retrying support
 
-our $VERSION = '0.6'; # VERSION 
+our $VERSION = '0.7'; # VERSION 
 
 use namespace::autoclean;
 
@@ -126,7 +126,7 @@ AnyEvent::Gearman::Worker::RetryConnection - patching AnyEvent::Gearman::Worker 
 
 =head1 VERSION
 
-version 0.6
+version 0.7
 
 =head1 ATTRIBUTES
 

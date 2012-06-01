@@ -1,6 +1,12 @@
 Revision History for IPC-AnyEvent-Gearman
 =========================================
 
+v0.7 2012-06-01
+---------------
+
+2012-06-01 18:10:15 +0900  v0.7 remove prefix,pid and add channel
+2012-06-01 10:51:38 +0900  ver up to 0.7 fix wrong codes in SYNOPSIS
+
 v0.6 2012-06-01
 ---------------
 

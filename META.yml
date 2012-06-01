@@ -26,8 +26,9 @@ requires:
   Gearman::Server: 0
   Log::Log4perl: 0
   Scalar::Util: 0
+  UUID::Random: 0
   namespace::autoclean: 0
 resources:
   homepage: https://github.com/sng2c/IPC-AnyEvent-Gearman
   repository: git://github.com/sng2c/IPC-AnyEvent-Gearman.git
-version: 0.6
+version: 0.7
