@@ -31,13 +31,14 @@ my %WriteMakefileArgs = (
     "AnyEvent::Handle" => 0,
     "AnyEvent::Socket" => 0,
     "Data::Dumper" => 0,
+    "Devel::GlobalDestruction" => 0,
     "Gearman::Server" => 0,
     "Log::Log4perl" => 0,
     "Scalar::Util" => 0,
     "UUID::Random" => 0,
     "namespace::autoclean" => 0
   },
-  "VERSION" => "0.7",
+  "VERSION" => "0.8",
   "test" => {
     "TESTS" => "t/*.t"
   }

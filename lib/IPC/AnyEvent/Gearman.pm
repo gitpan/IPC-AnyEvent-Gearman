@@ -1,15 +1,17 @@
 package IPC::AnyEvent::Gearman;
 # ABSTRACT: IPC through gearmand.
+use Devel::GlobalDestruction;
 use namespace::autoclean;
 use Log::Log4perl qw(:easy);
 Log::Log4perl->easy_init($ERROR);
+use Scalar::Util qw(weaken);
 use Any::Moose;
 use Data::Dumper;
 use AnyEvent::Gearman;
 use AnyEvent::Gearman::Worker::RetryConnection;
 use UUID::Random;
 
-our $VERSION = '0.7'; # VERSION
+our $VERSION = '0.8'; # VERSION
 
 
 has 'job_servers' => (is => 'rw', isa => 'ArrayRef',required => 1);
@@ -74,6 +76,7 @@ sub send{
             $self->on_fail()->($target_channel);
         }
     );
+    weaken($self);
 }
 
 sub _renew_connection{
@@ -90,8 +93,13 @@ sub _renew_connection{
             $job->complete($res);
         }
     );
+    weaken($self);
 }
-
+sub DEMOLISH{
+    return if in_global_destruction;
+    my $self = shift;
+    DEBUG __PACKAGE__." DEMOLISHED";
+}
 __PACKAGE__->meta->make_immutable;
 
 1;
@@ -106,7 +114,7 @@ IPC::AnyEvent::Gearman - IPC through gearmand.
 
 =head1 VERSION
 
-version 0.7
+version 0.8
 
 =head1 SYNOPSIS
 

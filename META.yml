@@ -23,6 +23,7 @@ requires:
   AnyEvent::Handle: 0
   AnyEvent::Socket: 0
   Data::Dumper: 0
+  Devel::GlobalDestruction: 0
   Gearman::Server: 0
   Log::Log4perl: 0
   Scalar::Util: 0
@@ -31,4 +32,4 @@ requires:
 resources:
   homepage: https://github.com/sng2c/IPC-AnyEvent-Gearman
   repository: git://github.com/sng2c/IPC-AnyEvent-Gearman.git
-version: 0.7
+version: 0.8
